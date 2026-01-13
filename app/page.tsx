@@ -6,6 +6,7 @@ interface ChecklistItem {
   id: string;
   title: string;
   description: string;
+  priority: '必須' | '高' | '中' | '低';
   checked: boolean;
 }
 
@@ -18,66 +19,73 @@ interface Category {
 
 const initialCategories: Category[] = [
   {
-    id: 'basic',
-    title: '基本情報の設定',
-    icon: '📋',
-    items: [
-      { id: 'basic-1', title: '施設名を登録', description: '正式な施設名を日本語と英語で登録', checked: false },
-      { id: 'basic-2', title: '住所を登録', description: '正確な住所情報を入力', checked: false },
-      { id: 'basic-3', title: '連絡先情報を登録', description: '電話番号、メールアドレスを設定', checked: false },
-      { id: 'basic-4', title: '施設タイプを選択', description: 'ホテル、旅館、民泊などから選択', checked: false },
-    ],
-  },
-  {
-    id: 'rooms',
-    title: '客室情報の設定',
-    icon: '🛏️',
-    items: [
-      { id: 'rooms-1', title: '客室タイプを作成', description: 'シングル、ダブル、ツインなどを設定', checked: false },
-      { id: 'rooms-2', title: '料金を設定', description: '基本料金と料金カレンダーを設定', checked: false },
-      { id: 'rooms-3', title: '客室設備を登録', description: 'エアコン、Wi-Fi、アメニティなどを選択', checked: false },
-      { id: 'rooms-4', title: '在庫数を設定', description: '各客室タイプの販売可能数を入力', checked: false },
-    ],
-  },
-  {
-    id: 'photos',
-    title: '写真のアップロード',
-    icon: '📷',
-    items: [
-      { id: 'photos-1', title: 'メイン写真を登録', description: '施設の外観や代表的な写真', checked: false },
-      { id: 'photos-2', title: '客室写真を登録', description: '各客室タイプの写真を最低3枚', checked: false },
-      { id: 'photos-3', title: '設備写真を登録', description: 'ロビー、レストラン、温泉など', checked: false },
-      { id: 'photos-4', title: '周辺環境の写真', description: '観光スポットやアクセス情報', checked: false },
-    ],
-  },
-  {
-    id: 'policies',
-    title: 'ポリシー設定',
-    icon: '📜',
-    items: [
-      { id: 'policies-1', title: 'キャンセルポリシー', description: 'キャンセル料金と期限を設定', checked: false },
-      { id: 'policies-2', title: 'チェックイン/アウト時間', description: '到着・出発時間を設定', checked: false },
-      { id: 'policies-3', title: '支払い方法', description: 'クレジットカード、現地払いなど', checked: false },
-      { id: 'policies-4', title: '子供・ペットポリシー', description: '子供料金やペット可否を設定', checked: false },
-    ],
-  },
-  {
-    id: 'publish',
-    title: '公開設定',
+    id: 'pre-sale',
+    title: '販売前の設定',
     icon: '🚀',
     items: [
-      { id: 'publish-1', title: '施設説明文を作成', description: '魅力的な施設紹介文を日英で作成', checked: false },
-      { id: 'publish-2', title: '最終確認', description: 'すべての情報を確認', checked: false },
-      { id: 'publish-3', title: '公開申請', description: 'Booking.comへ掲載申請', checked: false },
+      { id: 'pre-1', title: '営業許可証情報（届出番号など）の入力', description: '全項目を正しく入力する必要がある。', priority: '必須', checked: false },
+      { id: 'pre-2', title: '在庫の同期・連動', description: 'オーバーブッキングを防止する。', priority: '必須', checked: false },
+      { id: 'pre-3', title: '料金設定（先の繁忙期の料金確認）', description: '安すぎる料金での予約を防ぐ。', priority: '高', checked: false },
+      { id: 'pre-4', title: 'メッセージのセキュリティ登録', description: 'リンクやURLを事前に登録しないと送信できない場合がある。', priority: '高', checked: false },
+      { id: 'pre-5', title: '新規施設向けプロモーション利用', description: '掲載初期の予約獲得を促進する。', priority: '中', checked: false },
+      { id: 'pre-6', title: 'キャンセルポリシーの設定見直し', description: 'デフォルトで「前日まで無料」となっている場合があるので確認が必要。', priority: '中', checked: false },
+      { id: 'pre-7', title: '連絡先の更新', description: '顧客対応を外注している場合、すぐに連絡が取れる担当者の情報を入れる。', priority: '中', checked: false },
+      { id: 'pre-8', title: '予約のリクエスト制（承認制）', description: '掲載に慣れないうちはおすすめ。', priority: '低', checked: false },
+      { id: 'pre-9', title: 'テスト予約実施', description: '販売開始後、必ず実際の予約画面から確認する。', priority: '高', checked: false },
+    ],
+  },
+  {
+    id: 'basic',
+    title: '基礎設定',
+    icon: '⚙️',
+    items: [
+      { id: 'basic-1', title: '施設ページスコア100%達成', description: '露出を高めるための基本設定。', priority: '高', checked: false },
+      { id: 'basic-2', title: '子供ポリシー（料金）の設定', description: 'デフォルトで子供料金が未設定の場合があるため、ファミリー層の予約を取り込む。', priority: '高', checked: false },
+      { id: 'basic-3', title: '写真24枚以上登録＆タグ付け', description: '予約のコンバージョン率向上に繋がる。', priority: '高', checked: false },
+      { id: 'basic-4', title: '12ヶ月先までの在庫オープン', description: '早期予約を獲得する。', priority: '中', checked: false },
+      { id: 'basic-5', title: '清掃料金の設定', description: '設定漏れが多い項目。', priority: '中', checked: false },
+      { id: 'basic-6', title: '宿泊人数別の料金設定', description: 'グループや家族など多様なユーザーの獲得。', priority: '中', checked: false },
+      { id: 'basic-7', title: '自動返信/定型文のセット', description: '返信速度の維持とオペレーションの負担軽減。', priority: '中', checked: false },
+      { id: 'basic-8', title: '銀行情報の入力', description: '売上をスムーズに受け取るための準備。', priority: '中', checked: false },
+      { id: 'basic-9', title: '管理アプリのダウンロード', description: '日常的な管理を容易にする。', priority: '中', checked: false },
+      { id: 'basic-10', title: '設備・アメニティの全入力', description: '検索フィルター対策。', priority: '低', checked: false },
+    ],
+  },
+  {
+    id: 'advanced',
+    title: 'アドバンス設定',
+    icon: '🎯',
+    items: [
+      { id: 'adv-1', title: '多様なプラン（料金タイプ）の設定', description: '返金不可やウィークリープランなどで、キャンセル率の低減と稼働率の安定を図る。', priority: '高', checked: false },
+      { id: 'adv-2', title: 'Geniusプログラムへの参画', description: 'Geniusは集客に非常に有効（参加条件あり）。', priority: '高', checked: false },
+      { id: 'adv-3', title: 'Preferredプログラムへの参画', description: '競合が多いエリアでは必須（参加条件あり）。', priority: '高', checked: false },
+      { id: 'adv-4', title: 'モバイル・国別割引の設定', description: 'スマートフォンユーザーや特定マーケットのユーザー獲得。', priority: '高', checked: false },
+      { id: 'adv-5', title: 'Googleマップのピン位置と露出の確認', description: '予約の入り口を広げる。', priority: '高', checked: false },
+      { id: 'adv-6', title: '料金の整合性の維持（最安値保証の遵守）', description: '他のOTAと同じ料金設定で、露出とコンバージョン率を向上させる。', priority: '中', checked: false },
+      { id: 'adv-7', title: '柔軟なキャンセルポリシーの提供', description: '予約のコンバージョン率が大幅に向上する。', priority: '中', checked: false },
+      { id: 'adv-8', title: 'スポンサー広告の利用', description: '効果は高いが、プロ向けの有料プログラム。', priority: '低', checked: false },
+      { id: 'adv-9', title: '競合施設セットの登録', description: '適正価格を把握する。', priority: '低', checked: false },
+      { id: 'adv-10', title: '税金（宿泊税など）の設定', description: '宿泊税など、必要な税金を設定する。', priority: '低', checked: false },
+      { id: 'adv-11', title: '30日以上の予約の受け入れ設定', description: '長期滞在のユーザーを獲得する。', priority: '低', checked: false },
+      { id: 'adv-12', title: 'お支払いを受け取るタイミングの調整', description: '週ごとなど、支払い頻度を設定できる。', priority: '低', checked: false },
+      { id: 'adv-13', title: 'ダイナミックプライシングの導入', description: 'Geniusのダイナミックプライシング機能やPricelabsなどを利用すると、利益最大化にする。', priority: '低', checked: false },
     ],
   },
 ];
 
-const STORAGE_KEY = 'booking-dashboard-progress';
+const STORAGE_KEY = 'booking-dashboard-progress-v2';
+
+const priorityColors = {
+  '必須': 'bg-red-500/20 text-red-300 border-red-500/30',
+  '高': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+  '中': 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+  '低': 'bg-gray-500/20 text-gray-300 border-gray-500/30',
+};
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>(initialCategories);
   const [mounted, setMounted] = useState(false);
+  const [filter, setFilter] = useState<'all' | '必須' | '高' | '中' | '低'>('all');
 
   useEffect(() => {
     setMounted(true);
@@ -112,6 +120,11 @@ export default function Home() {
     );
   };
 
+  const getFilteredItems = (items: ChecklistItem[]) => {
+    if (filter === 'all') return items;
+    return items.filter(item => item.priority === filter);
+  };
+
   const getTotalProgress = () => {
     const allItems = categories.flatMap(c => c.items);
     const checkedItems = allItems.filter(i => i.checked);
@@ -121,6 +134,12 @@ export default function Home() {
   const getCategoryProgress = (category: Category) => {
     const checkedItems = category.items.filter(i => i.checked);
     return Math.round((checkedItems.length / category.items.length) * 100);
+  };
+
+  const getRequiredProgress = () => {
+    const requiredItems = categories.flatMap(c => c.items).filter(i => i.priority === '必須');
+    const checkedRequired = requiredItems.filter(i => i.checked);
+    return requiredItems.length > 0 ? Math.round((checkedRequired.length / requiredItems.length) * 100) : 100;
   };
 
   const resetProgress = () => {
@@ -138,6 +157,7 @@ export default function Home() {
   }
 
   const progress = getTotalProgress();
+  const requiredProgress = getRequiredProgress();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900">
@@ -164,72 +184,118 @@ export default function Home() {
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         {/* Progress Overview */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-white/10">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-white text-xl font-bold">全体の進捗状況</h2>
-            <span className="text-3xl font-bold text-blue-300">{progress}%</span>
+        <div className="grid gap-4 md:grid-cols-2 mb-8">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-white text-lg font-bold">全体の進捗</h2>
+              <span className="text-3xl font-bold text-blue-300">{progress}%</span>
+            </div>
+            <div className="h-4 bg-blue-950/50 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-blue-400 to-green-400 rounded-full transition-all duration-500 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <p className="text-blue-200 text-sm mt-3">
+              {categories.flatMap(c => c.items).filter(i => i.checked).length} / {categories.flatMap(c => c.items).length} 項目完了
+            </p>
           </div>
-          <div className="h-4 bg-blue-950/50 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-blue-400 to-green-400 rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${progress}%` }}
-            />
+
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-white text-lg font-bold">必須項目の進捗</h2>
+              <span className={`text-3xl font-bold ${requiredProgress === 100 ? 'text-green-400' : 'text-red-400'}`}>{requiredProgress}%</span>
+            </div>
+            <div className="h-4 bg-blue-950/50 rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-all duration-500 ease-out ${requiredProgress === 100 ? 'bg-green-400' : 'bg-red-400'}`}
+                style={{ width: `${requiredProgress}%` }}
+              />
+            </div>
+            <p className="text-blue-200 text-sm mt-3">
+              {categories.flatMap(c => c.items).filter(i => i.priority === '必須' && i.checked).length} / {categories.flatMap(c => c.items).filter(i => i.priority === '必須').length} 必須項目完了
+            </p>
           </div>
-          <p className="text-blue-200 text-sm mt-3">
-            {categories.flatMap(c => c.items).filter(i => i.checked).length} / {categories.flatMap(c => c.items).length} 項目完了
-          </p>
+        </div>
+
+        {/* Filter */}
+        <div className="flex gap-2 mb-6 flex-wrap">
+          {(['all', '必須', '高', '中', '低'] as const).map(f => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${filter === f
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-white/10 text-blue-200 hover:bg-white/20'
+                }`}
+            >
+              {f === 'all' ? 'すべて' : f}
+            </button>
+          ))}
         </div>
 
         {/* Categories */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {categories.map(category => (
-            <div
-              key={category.id}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden hover:bg-white/15 transition-colors"
-            >
-              <div className="p-5 border-b border-white/10">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">{category.icon}</span>
-                  <h3 className="text-white font-bold">{category.title}</h3>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 h-2 bg-blue-950/50 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full rounded-full transition-all duration-300 ${getCategoryProgress(category) === 100
-                          ? 'bg-green-400'
-                          : 'bg-blue-400'
-                        }`}
-                      style={{ width: `${getCategoryProgress(category)}%` }}
-                    />
-                  </div>
-                  <span className="text-blue-300 text-sm font-medium">
-                    {getCategoryProgress(category)}%
-                  </span>
-                </div>
-              </div>
-              <div className="p-4 space-y-2">
-                {category.items.map(item => (
-                  <label
-                    key={item.id}
-                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 cursor-pointer transition-colors group"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={item.checked}
-                      onChange={() => toggleItem(category.id, item.id)}
-                      className="mt-1 w-5 h-5 rounded border-2 border-blue-400 bg-transparent checked:bg-blue-500 checked:border-blue-500 cursor-pointer accent-blue-500"
-                    />
-                    <div className="flex-1">
-                      <p className={`font-medium transition-colors ${item.checked ? 'text-green-300 line-through' : 'text-white'}`}>
-                        {item.title}
-                      </p>
-                      <p className="text-blue-300 text-sm mt-0.5">{item.description}</p>
+        <div className="space-y-6">
+          {categories.map(category => {
+            const filteredItems = getFilteredItems(category.items);
+            if (filteredItems.length === 0) return null;
+
+            return (
+              <div
+                key={category.id}
+                className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
+              >
+                <div className="p-5 border-b border-white/10 bg-white/5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{category.icon}</span>
+                      <h3 className="text-white font-bold text-lg">{category.title}</h3>
                     </div>
-                  </label>
-                ))}
+                    <div className="flex items-center gap-3">
+                      <div className="w-32 h-2 bg-blue-950/50 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full transition-all duration-300 ${getCategoryProgress(category) === 100
+                              ? 'bg-green-400'
+                              : 'bg-blue-400'
+                            }`}
+                          style={{ width: `${getCategoryProgress(category)}%` }}
+                        />
+                      </div>
+                      <span className="text-blue-300 text-sm font-medium min-w-[3rem]">
+                        {getCategoryProgress(category)}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 space-y-2">
+                  {filteredItems.map(item => (
+                    <label
+                      key={item.id}
+                      className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 cursor-pointer transition-colors group"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={item.checked}
+                        onChange={() => toggleItem(category.id, item.id)}
+                        className="mt-1 w-5 h-5 rounded border-2 border-blue-400 bg-transparent checked:bg-blue-500 checked:border-blue-500 cursor-pointer accent-blue-500"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <p className={`font-medium transition-colors ${item.checked ? 'text-green-300 line-through' : 'text-white'}`}>
+                            {item.title}
+                          </p>
+                          <span className={`px-2 py-0.5 text-xs rounded-full border ${priorityColors[item.priority]}`}>
+                            {item.priority}
+                          </span>
+                        </div>
+                        <p className="text-blue-300 text-sm mt-1">{item.description}</p>
+                      </div>
+                    </label>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Completion Message */}
