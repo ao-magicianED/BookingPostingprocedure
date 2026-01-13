@@ -225,8 +225,8 @@ export default function Home() {
               key={f}
               onClick={() => setFilter(f)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${filter === f
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-white/10 text-blue-200 hover:bg-white/20'
+                ? 'bg-blue-500 text-white'
+                : 'bg-white/10 text-blue-200 hover:bg-white/20'
                 }`}
             >
               {f === 'all' ? 'すべて' : f}
@@ -255,8 +255,8 @@ export default function Home() {
                       <div className="w-32 h-2 bg-blue-950/50 rounded-full overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-300 ${getCategoryProgress(category) === 100
-                              ? 'bg-green-400'
-                              : 'bg-blue-400'
+                            ? 'bg-green-400'
+                            : 'bg-blue-400'
                             }`}
                           style={{ width: `${getCategoryProgress(category)}%` }}
                         />
@@ -309,8 +309,56 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-16 py-6 border-t border-blue-700/30 text-center text-blue-300 text-sm">
-        <p>Booking.com 掲載手順ダッシュボード © 2026</p>
+      <footer className="mt-16 py-8 border-t border-blue-700/30">
+        <div className="max-w-2xl mx-auto px-4">
+          {/* Credits */}
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-white/10">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <span className="text-xl">🙏</span>
+              <h3 className="text-white font-bold">Special Thanks</h3>
+            </div>
+            <p className="text-blue-200 text-center mb-4">
+              このチェックリストは
+              <a
+                href="https://x.com/henry_z0807"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 font-medium mx-1 underline underline-offset-2"
+              >
+                ヘンリーさん (@henry_z0807)
+              </a>
+              が作成・公開してくださった内容を元に作成しました。
+            </p>
+            <div className="flex justify-center gap-4">
+              <a
+                href="https://x.com/henry_z0807"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-black/30 hover:bg-black/50 rounded-full text-white text-sm transition-colors"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                プロフィール
+              </a>
+              <a
+                href="https://x.com/henry_z0807/status/2010637888552304738"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600/30 hover:bg-blue-600/50 rounded-full text-white text-sm transition-colors"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                元の投稿を見る
+              </a>
+            </div>
+          </div>
+
+          <p className="text-blue-300 text-sm text-center">
+            Booking.com 掲載手順ダッシュボード © 2026
+          </p>
+        </div>
       </footer>
     </div>
   );
