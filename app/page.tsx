@@ -363,7 +363,7 @@ export default function Home() {
               onClick={() => {
                 const password = prompt('合言葉を入力してください：');
                 if (password === 'ヘンリー') {
-                  window.location.href = '/faq';
+                  window.location.href = '/BookingPostingprocedure/faq/';
                 } else if (password !== null) {
                   alert('合言葉が違います');
                 }
