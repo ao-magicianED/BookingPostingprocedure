@@ -368,9 +368,22 @@ export default function Home() {
                   alert('合言葉が違います');
                 }
               }}
-              className="text-blue-700/40 hover:text-blue-500/60 text-xs transition-colors cursor-pointer"
+              className="text-blue-700/40 hover:text-blue-500/60 text-xs transition-colors cursor-pointer mr-4"
             >
               📚
+            </button>
+            <button
+              onClick={() => {
+                const password = prompt('合言葉を入力してください：');
+                if (password === 'ヘンリー') {
+                  window.location.href = '/BookingPostingprocedure/guide/';
+                } else if (password !== null) {
+                  alert('合言葉が違います');
+                }
+              }}
+              className="text-blue-700/40 hover:text-blue-500/60 text-xs transition-colors cursor-pointer"
+            >
+              📈
             </button>
           </p>
         </div>
