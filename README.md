@@ -1,3 +1,9 @@
+# Booking.com 掲載手順ダッシュボード
+
+🌐 **デプロイ済みサイト**: [https://ao-magicianed.github.io/BookingPostingprocedure/](https://ao-magicianed.github.io/BookingPostingprocedure/)
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

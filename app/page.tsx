@@ -358,6 +358,14 @@ export default function Home() {
           <p className="text-blue-300 text-sm text-center">
             Booking.com 掲載手順ダッシュボード © 2026
           </p>
+          <p className="text-center mt-4">
+            <a
+              href="/faq"
+              className="text-blue-700/40 hover:text-blue-500/60 text-xs transition-colors"
+            >
+              📚
+            </a>
+          </p>
         </div>
       </footer>
     </div>
