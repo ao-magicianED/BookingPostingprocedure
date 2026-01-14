@@ -359,12 +359,19 @@ export default function Home() {
             Booking.com 掲載手順ダッシュボード © 2026
           </p>
           <p className="text-center mt-4">
-            <a
-              href="/faq"
-              className="text-blue-700/40 hover:text-blue-500/60 text-xs transition-colors"
+            <button
+              onClick={() => {
+                const password = prompt('合言葉を入力してください：');
+                if (password === 'ヘンリー') {
+                  window.location.href = '/faq';
+                } else if (password !== null) {
+                  alert('合言葉が違います');
+                }
+              }}
+              className="text-blue-700/40 hover:text-blue-500/60 text-xs transition-colors cursor-pointer"
             >
               📚
-            </a>
+            </button>
           </p>
         </div>
       </footer>
