@@ -83,27 +83,28 @@ const priorityColors = {
 };
 
 export default function Home() {
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
-  const [mounted, setMounted] = useState(false);
+  const [categories, setCategories] = useState<Category[]>(() => {
+    if (typeof window === 'undefined') {
+      return initialCategories;
+    }
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      return initialCategories;
+    }
+
+    try {
+      return JSON.parse(saved) as Category[];
+    } catch (error) {
+      console.error('Failed to load saved progress', error);
+      return initialCategories;
+    }
+  });
   const [filter, setFilter] = useState<'all' | '必須' | '高' | '中' | '低'>('all');
 
   useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        setCategories(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to load saved progress', e);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (mounted) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(categories));
-    }
-  }, [categories, mounted]);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(categories));
+  }, [categories]);
 
   const toggleItem = (categoryId: string, itemId: string) => {
     setCategories(prev =>
@@ -147,14 +148,6 @@ export default function Home() {
       setCategories(initialCategories);
     }
   };
-
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex items-center justify-center">
-        <div className="text-white text-xl">読み込み中...</div>
-      </div>
-    );
-  }
 
   const progress = getTotalProgress();
   const requiredProgress = getRequiredProgress();
