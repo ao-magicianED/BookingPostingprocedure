@@ -257,6 +257,20 @@ const faqData: FAQCategory[] = [
 export default function FAQPage() {
     const [openCategory, setOpenCategory] = useState<string | null>('registration');
     const [openItems, setOpenItems] = useState<{ [key: string]: boolean }>({});
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [inputPassword, setInputPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handlePasswordSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (inputPassword === 'ヘンリー') {
+            setIsAuthenticated(true);
+            setError('');
+        } else {
+            setError('合言葉が違います');
+            setInputPassword('');
+        }
+    };
 
     const toggleCategory = (categoryId: string) => {
         setOpenCategory(openCategory === categoryId ? null : categoryId);
@@ -266,6 +280,50 @@ export default function FAQPage() {
         const key = `${categoryId}-${itemIndex}`;
         setOpenItems((prev) => ({ ...prev, [key]: !prev[key] }));
     };
+
+    // 認証前の画面
+    if (!isAuthenticated) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex items-center justify-center px-4">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-md w-full">
+                    <div className="text-center mb-6">
+                        <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-3xl shadow-lg mx-auto mb-4">
+                            📚
+                        </div>
+                        <h1 className="text-white font-bold text-xl">ナレッジベース</h1>
+                        <p className="text-blue-300 text-sm mt-2">このページは限定公開です</p>
+                    </div>
+                    <form onSubmit={handlePasswordSubmit} className="space-y-4">
+                        <div>
+                            <input
+                                type="text"
+                                value={inputPassword}
+                                onChange={(e) => setInputPassword(e.target.value)}
+                                placeholder="合言葉を入力..."
+                                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30"
+                                autoFocus
+                            />
+                        </div>
+                        {error && (
+                            <p className="text-red-400 text-sm text-center">{error}</p>
+                        )}
+                        <button
+                            type="submit"
+                            className="w-full px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-xl transition-colors"
+                        >
+                            入室する
+                        </button>
+                        <a
+                            href="/"
+                            className="block text-center text-blue-400/60 hover:text-blue-300 text-sm mt-4"
+                        >
+                            ← トップに戻る
+                        </a>
+                    </form>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900">
