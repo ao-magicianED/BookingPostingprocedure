@@ -306,8 +306,8 @@ export default function FAQPage() {
                             key={category.id}
                             onClick={() => toggleCategory(category.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${openCategory === category.id
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-white/10 text-blue-200 hover:bg-white/20'
+                                ? 'bg-blue-500 text-white'
+                                : 'bg-white/10 text-blue-200 hover:bg-white/20'
                                 }`}
                         >
                             {category.icon} {category.title}
@@ -353,6 +353,76 @@ export default function FAQPage() {
                                 })}
                             </div>
                         ))}
+                </div>
+
+                {/* Tips Section */}
+                <div className="mt-12">
+                    <h2 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
+                        💡 役立つヒント
+                    </h2>
+
+                    {/* Useful Contacts */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 mb-6">
+                        <h3 className="text-white font-bold mb-4 flex items-center gap-2">
+                            📞 便利な連絡先
+                        </h3>
+                        <div className="space-y-3 text-sm">
+                            <div className="flex items-start gap-3">
+                                <span className="text-blue-300 shrink-0">カスタマーサポート電話:</span>
+                                <span className="text-white font-mono">03-4563-7151</span>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <span className="text-blue-300 shrink-0">財務部（入金関連）:</span>
+                                <span className="text-white font-mono text-xs">partner.payments@booking.com</span>
+                            </div>
+                            <p className="text-blue-400/60 text-xs mt-2">※ 財務部への問い合わせは英語推奨</p>
+                        </div>
+                    </div>
+
+                    {/* 180 Day Rule */}
+                    <div className="bg-amber-500/10 backdrop-blur-sm rounded-2xl p-6 border border-amber-500/20 mb-6">
+                        <h3 className="text-amber-300 font-bold mb-4 flex items-center gap-2">
+                            ⚠️ 新法民泊の180日ルール
+                        </h3>
+                        <ul className="space-y-2 text-sm text-blue-200">
+                            <li>• 新法民泊は<span className="text-amber-300 font-bold">180日を超えると自動的に掲載停止</span>になります</li>
+                            <li>• 観光庁から各OTAに停止指示が来る仕組みです</li>
+                            <li>• 旅館業への切り替え時は忘れずに登録情報を更新してください</li>
+                        </ul>
+                    </div>
+
+                    {/* Recommended Tools */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 mb-6">
+                        <h3 className="text-white font-bold mb-4 flex items-center gap-2">
+                            🛠️ おすすめツール・サービス
+                        </h3>
+                        <div className="grid gap-4 sm:grid-cols-3">
+                            <div className="bg-white/5 rounded-xl p-4">
+                                <h4 className="text-white font-bold text-sm">AirHost</h4>
+                                <p className="text-blue-300 text-xs mt-1">チェックインフォームでパスポート情報収集が楽になる</p>
+                            </div>
+                            <div className="bg-white/5 rounded-xl p-4">
+                                <h4 className="text-white font-bold text-sm">Pricelabs</h4>
+                                <p className="text-blue-300 text-xs mt-1">ダイナミックプライシングで利益最大化</p>
+                            </div>
+                            <div className="bg-white/5 rounded-xl p-4">
+                                <h4 className="text-white font-bold text-sm">Beds24</h4>
+                                <p className="text-blue-300 text-xs mt-1">サイトコントローラー（在庫連動）</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Cautions */}
+                    <div className="bg-red-500/10 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 mb-6">
+                        <h3 className="text-red-300 font-bold mb-4 flex items-center gap-2">
+                            🚨 注意事項
+                        </h3>
+                        <ul className="space-y-2 text-sm text-blue-200">
+                            <li>• <span className="text-red-300 font-bold">フィッシングメール</span>に注意（Bookingを装った詐欺メールが増加中）</li>
+                            <li>• Agoda経由予約は<span className="text-white">WhatsAppで直接連絡</span>が確実</li>
+                            <li>• メールアドレスを聞く場合は<span className="text-white">3つに分けて</span>送ってもらう（例：sample / gmail / com）</li>
+                        </ul>
+                    </div>
                 </div>
 
                 {/* Note */}
