@@ -314,7 +314,7 @@ export default function FAQPage() {
                             入室する
                         </button>
                         <a
-                            href="/"
+                            href="/BookingPostingprocedure/"
                             className="block text-center text-blue-400/60 hover:text-blue-300 text-sm mt-4"
                         >
                             ← トップに戻る
@@ -331,7 +331,7 @@ export default function FAQPage() {
             <header className="bg-blue-950/50 backdrop-blur-sm border-b border-blue-700/30 sticky top-0 z-10">
                 <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <Link href="/" className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg hover:opacity-80 transition-opacity">
+                        <Link href="/BookingPostingprocedure/" className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg hover:opacity-80 transition-opacity">
                             B
                         </Link>
                         <div>
